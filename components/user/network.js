@@ -13,4 +13,15 @@ router.post('/', function(req, res) {
         })
 })
 
+router.get('/', function(req, res) {
+    const filterName = req.query.name || null
+    controller.getUsers(filterName)
+        .then(userList => {
+            response.success(req, res, userList, 200)
+        })
+        .catch(err => {
+            response.error(req, res, 'Unexpected Error', 500, err)
+        })
+})
+
 module.exports = router
