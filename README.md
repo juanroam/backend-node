@@ -1,2 +1,2 @@
-# backend-node-platzi
-Proyecto del curso de Backend con Node 2019
+# backend-node
+Proyecto del curso de Backend con Node.
