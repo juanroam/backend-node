@@ -1,15 +1,27 @@
+const statusMessage = {
+    '200': 'Done',
+    '201': 'Created',
+    '400': 'Invalid format',
+    '500': 'Internal error'
+}
+
 exports.success = function (request, response, message, status) {
-    // parámetro opcional status, predeterminado 200
-    response.status(status || 200).send({
+    let statusCode = !status ? 200 : status
+    let statusMsg = !message ? statusMessage[status] : message
+
+    response.status(statusCode).send({
         error: '',
-        body: message
+        body: statusMsg
     })
 }
 
 exports.error = function (request, response, message, status, details) {
+    let statusCode = !status ? 200 : status
+    let statusMsg = !message ? statusMessage[status] : message
+
     console.error('[response error] ' + details)
-    response.status(status || 500).send({
-        error: message,
+    response.status(statusCode).send({
+        error: statusMsg,
         body: ''
     })
 }
